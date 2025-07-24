@@ -8,6 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "deploy": "gh-pages -d dist",
+    "reset-deploy": "git push origin --delete gh-pages || true && npm run build && npx gh-pages -d dist --dotfiles",
     "preview": "vite preview"
   },
   "dependencies": {
