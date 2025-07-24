@@ -7,15 +7,16 @@ body,
   flex-direction: column;
 }
 
-#root > * {
-  flex-shrink: 0; /* Prevent footer compression */
+body {
+  box-sizing: border-box;
 }
 
 * {
   box-sizing: border-box;
 }
 
-body {
-  padding-bottom: 50px;
-  box-sizing: border-box;
+.main-content {
+  flex: 1; /* This ensures footer is pushed down */
+  display: flex;
+  flex-direction: column;
 }

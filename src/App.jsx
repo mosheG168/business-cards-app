@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import RegisterPage from "./components/pages/RegisterPage";
 import LoginPage from "./components/pages/LoginPage";
 import NotFoundPage from "./components/pages/NotFoundPage";
@@ -22,65 +22,65 @@ function App() {
     <>
       <Header />
 
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route
-          path="/create-card"
-          element={
-            <ProtectedRoute bizOnly={true}>
-              <CreateCardPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/cards" element={<CardsPage />} />
-        <Route
-          path="/my-cards"
-          element={
-            <ProtectedRoute bizOnly={true}>
-              <MyCardsPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/favorites"
-          element={
-            <ProtectedRoute>
-              <FavoriteCardsPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/edit-card/:cardId"
-          element={
-            <ProtectedRoute bizOnly={true}>
-              <EditCardPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute adminOnly={true}>
-              <AdminPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/edit-profile"
-          element={
-            <ProtectedRoute>
-              <EditProfilePage />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/cards/:cardId" element={<CardDetailsPage />} />
-        <Route path="/about" element={<AboutPage />} />
-
-        {/* Catch-all for invalid routes */}
-        <Route path="*" element={<LandingPage />} />
-      </Routes>
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/create-card"
+            element={
+              <ProtectedRoute bizOnly={true}>
+                <CreateCardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/cards" element={<CardsPage />} />
+          <Route
+            path="/my-cards"
+            element={
+              <ProtectedRoute bizOnly={true}>
+                <MyCardsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/favorites"
+            element={
+              <ProtectedRoute>
+                <FavoriteCardsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/edit-card/:cardId"
+            element={
+              <ProtectedRoute bizOnly={true}>
+                <EditCardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute adminOnly={true}>
+                <AdminPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/edit-profile"
+            element={
+              <ProtectedRoute>
+                <EditProfilePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/cards/:cardId" element={<CardDetailsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="*" element={<LandingPage />} />
+        </Routes>
+      </main>
 
       <Footer />
       <ScrollToTop />
