@@ -1,13 +1,11 @@
 .footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  position: static; /* footer is now part of the normal document flow */
   width: 100%;
-  height: 50px;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  margin-top: auto; /* pushes footer down if content is smaller */
 }
 
 .footer-paper {
