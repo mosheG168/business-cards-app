@@ -1,0 +1,41 @@
+.edit-card-container {
+  margin-top: 5rem; /* Push down to avoid overlap with navbar */
+  margin-bottom: 2rem;
+}
+
+.edit-card-header {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text-color, #1976d2);
+}
+
+.edit-card-paper {
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.edit-card-button {
+  margin-top: 2rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+}
+
+[data-theme="dark"] .edit-card-paper {
+  background-color: #1e1e1e;
+}
+
+[data-theme="dark"] .edit-card-header {
+  color: #90caf9;
+}
+
+[data-theme="dark"] .MuiTextField-root input {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .MuiInputLabel-root {
+  color: #90caf9;
+}

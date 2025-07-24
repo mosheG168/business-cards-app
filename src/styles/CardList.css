@@ -1,0 +1,16 @@
+.card-list-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card-grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex: 1 1 300px;
+  max-width: 320px;
+}

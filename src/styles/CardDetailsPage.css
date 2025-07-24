@@ -1,0 +1,90 @@
+.details-container {
+  margin-top: 96px;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.details-card {
+  max-width: 650px;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: var(--card-bg, #fff);
+  transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+.back-button {
+  margin-bottom: 1rem;
+}
+
+.details-action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.details-image-box {
+  margin-bottom: 1.5rem;
+}
+
+.details-image {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.details-title {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.details-subtitle {
+  color: #555;
+}
+
+.details-description {
+  margin-bottom: 1rem;
+}
+
+.details-divider {
+  margin: 1rem 0;
+}
+
+.whatsapp-button {
+  margin-top: 0.5rem;
+}
+
+.details-email {
+  margin-top: 0.5rem;
+}
+
+.details-heading {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.details-map-title {
+  margin-top: 1rem;
+}
+
+.details-map-box {
+  margin-top: 0.5rem;
+}
+
+/* Dark mode */
+[data-theme="dark"] .details-card {
+  --card-bg: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .details-title,
+[data-theme="dark"] .details-subtitle,
+[data-theme="dark"] .details-description,
+[data-theme="dark"] .details-heading {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .MuiSvgIcon-root {
+  color: inherit !important;
+}

@@ -1,0 +1,32 @@
+.landing-container {
+  margin-top: 8rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.landing-header {
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: var(--text-color, #1976d2);
+  margin-bottom: 0.5rem;
+}
+
+.landing-subheader {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+[data-theme="dark"] .landing-header {
+  color: #90caf9;
+}
+
+[data-theme="dark"] .landing-subheader {
+  color: #ccc;
+}
+
+@media (max-width: 600px) {
+  .landing-container {
+    margin-top: 11rem;
+  }
+}
