@@ -48,8 +48,8 @@ const Header = () => {
   }
 
   const navLinks = [
-    { label: "Home", path: "/#/" },
-    { label: "About", path: "/about" },
+    { label: "Home", path: "" },
+    { label: "About", path: "about" },
     ...(user
       ? [
           ...(user.isAdmin ? [{ label: "Admin", path: "/admin" }] : []),
