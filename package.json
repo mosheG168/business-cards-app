@@ -2,7 +2,6 @@
   "name": "business-cards-app",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://mosheg168.github.io/business-cards-app/",
   "type": "module",
   "scripts": {
     "dev": "vite",
