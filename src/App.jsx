@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import RegisterPage from "./components/pages/RegisterPage";
 import LoginPage from "./components/pages/LoginPage";
 import NotFoundPage from "./components/pages/NotFoundPage";
@@ -17,14 +17,15 @@ import AdminPage from "./components/pages/AdminPage";
 import EditProfilePage from "./components/pages/EditProfilePage";
 import ScrollToTop from "./components/common/ScrollToTop";
 
-
 function App() {
   return (
     <>
       <Header />
 
       <Routes>
-        <Route path="/" element={<LandingPage  />} />
+        {/* Redirect root path to /cards */}
+        <Route path="/" element={<Navigate to="/cards" replace />} />
+        
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route
@@ -78,8 +79,11 @@ function App() {
         />
         <Route path="/cards/:cardId" element={<CardDetailsPage />} />
         <Route path="/about" element={<AboutPage />} />
+
+        {/* Catch-all for invalid routes */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+
       <Footer />
       <ScrollToTop />
     </>
