@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <Header />
-      
+
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/register" element={<RegisterPage />} />
@@ -79,7 +79,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
 
         {/* Catch-all for invalid routes */}
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="*" element={<LandingPage />} />
       </Routes>
 
       <Footer />
