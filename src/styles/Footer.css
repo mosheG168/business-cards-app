@@ -8,7 +8,6 @@
   justify-content: center;
   align-items: center;
   z-index: 1;
-  height: 40px;
 }
 
 .footer-paper {
@@ -20,7 +19,7 @@
 }
 
 .footer-nav {
-  min-height: 30px;
+  min-height: 36px;
   background: transparent;
 }
 
@@ -36,9 +35,9 @@
 }
 
 .footer-text {
-  font-size: 0.7rem;
+  font-size: 0.2rem;
   text-align: center;
-  padding: 0.3rem 0;
+  padding: 0.2rem 0;
   color: #0d47a1;
   font-weight: 500;
 }

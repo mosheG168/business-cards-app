@@ -76,9 +76,6 @@ const CardsPage = () => {
 
   return (
     <Container sx={{ mt: 12 }}>
-      <Typography variant="h4" gutterBottom>
-        All Business Cards
-      </Typography>
 
       {error && (
         <Typography color="error" variant="body2" sx={{ mb: 2 }}>

@@ -23,9 +23,7 @@ function App() {
       <Header />
 
       <Routes>
-        {/* Redirect root path to /cards */}
-        <Route path="/" element={<Navigate to="/cards" replace />} />
-        
+        <Route path="/" element={<LandingPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route
