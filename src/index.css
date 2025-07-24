@@ -7,6 +7,10 @@ body,
   flex-direction: column;
 }
 
+#root > * {
+  flex-shrink: 0; /* Prevent footer compression */
+}
+
 * {
   box-sizing: border-box;
 }
