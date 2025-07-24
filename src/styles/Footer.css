@@ -1,25 +1,25 @@
 .footer {
-  position: relative !important; /* force normal flow */
-  bottom: auto !important;
-  left: auto !important;
   width: 100%;
-  margin-top: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: auto; /* pushes footer to the bottom of the page */
 }
 
 .footer-paper {
-  position: relative !important; /* prevent Paper from being absolute */
   width: 100%;
   border-radius: 6px 6px 0 0;
   background: linear-gradient(135deg, #f8fbff, #e3f2fd);
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
   padding: 0.3rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer-nav {
-  min-height: 28px;
+  min-height: 32px;
   background: transparent;
 }
 
@@ -37,7 +37,7 @@
 .footer-text {
   font-size: 0.7rem;
   text-align: center;
-  padding: 0;
+  padding: 0.2rem 0;
   color: #0d47a1;
   font-weight: 400;
 }

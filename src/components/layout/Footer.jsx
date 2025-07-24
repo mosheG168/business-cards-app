@@ -27,9 +27,9 @@ const Footer = () => {
   }, []);
 
   return (
-    <Fade in={visible} timeout={600}>
-      <Box component="footer" className="footer">
-        <Paper elevation={6} square className="footer-paper">
+    <Fade in={visible} timeout={500}>
+      <footer className="footer">
+        <Paper elevation={3} square className="footer-paper">
           <BottomNavigation showLabels className="footer-nav">
             <BottomNavigationAction
               label="About"
@@ -57,12 +57,11 @@ const Footer = () => {
               />
             )}
           </BottomNavigation>
-
           <Typography variant="body2" align="center" className="footer-text">
             &copy; {new Date().getFullYear()} Moshe Green’s Business Cards App
           </Typography>
         </Paper>
-      </Box>
+      </footer>
     </Fade>
   );
 };
