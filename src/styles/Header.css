@@ -3,6 +3,11 @@
   top: 0;
   width: 100%;
   z-index: 1300;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  height: 64px; /* default desktop height */
+  box-sizing: border-box;
 }
 
 .app-title {
@@ -11,6 +16,9 @@
   color: inherit;
   font-weight: 500;
   font-size: 1.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 [data-theme="dark"] .MuiOutlinedInput-root {
@@ -22,11 +30,24 @@
   color: #90caf9;
 }
 
+/* Small screens (iPhones, etc.) */
 @media (max-width: 600px) {
   .app-header {
-    position: relative;
-    top: auto;
+    position: fixed;
+    top: 0;
     width: 100%;
-    height: 25vh;
+    height: 56px; /* smaller height */
+    padding: 0 0.5rem;
+  }
+
+  .app-title {
+    font-size: 1rem;
+  }
+}
+
+/* Extra small (tiny phones, <380px) */
+@media (max-width: 380px) {
+  .app-title {
+    font-size: 0.9rem;
   }
 }
