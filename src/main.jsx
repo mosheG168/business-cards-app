@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import { BrowserRouter } from "react-router-dom";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
 
@@ -18,13 +17,13 @@ const ThemedApp = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <HashRouter>
+      < BrowserRouter>
         <SnackbarProvider>
           <UserProvider>
             <App />
           </UserProvider>
         </SnackbarProvider>
-      </HashRouter>
+      </ BrowserRouter>
     </ThemeProvider>
   );
 };
