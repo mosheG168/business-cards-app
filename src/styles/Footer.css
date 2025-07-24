@@ -8,6 +8,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1;
+  height: 40px;
 }
 
 .footer-paper {
@@ -19,7 +20,7 @@
 }
 
 .footer-nav {
-  min-height: 36px;
+  min-height: 30px;
   background: transparent;
 }
 
