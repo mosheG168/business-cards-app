@@ -1,10 +1,12 @@
 .footer {
+  position: static !important;
+  bottom: auto !important;
+  left: auto !important;
   width: 100%;
-  padding: 0;
+  margin-top: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: auto; /* push footer to bottom if content is small */
 }
 
 .footer-paper {
