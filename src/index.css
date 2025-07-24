@@ -9,3 +9,8 @@ body,
 * {
   box-sizing: border-box;
 }
+
+body {
+  padding-bottom: 50px;
+  box-sizing: border-box;
+}
