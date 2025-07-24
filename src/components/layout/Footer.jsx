@@ -1,68 +1,42 @@
 import { useUser } from "../context/UserContext";
 import { Link } from "react-router-dom";
 import "../../styles/Footer.css";
-import {
-  BottomNavigation,
-  BottomNavigationAction,
-  Paper,
-  Typography,
-  Box,
-  Fade,
-} from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import BusinessIcon from "@mui/icons-material/Business";
-import { useEffect, useState } from "react";
 
 const Footer = () => {
   const { user } = useUser();
   const isBusiness = user?.isBusiness;
   const isLoggedIn = !!user;
 
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 150);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <Fade in={visible} timeout={500}>
-      <footer className="footer">
-        <Paper elevation={3} square className="footer-paper">
-          <BottomNavigation showLabels className="footer-nav">
-            <BottomNavigationAction
-              label="About"
-              icon={<InfoIcon />}
-              component={Link}
-              to="/about"
-              className="footer-icon"
-            />
-            {isLoggedIn && (
-              <BottomNavigationAction
-                label="Favorites"
-                icon={<FavoriteIcon />}
-                component={Link}
-                to="/favorites"
-                className="footer-icon"
-              />
-            )}
-            {isBusiness && (
-              <BottomNavigationAction
-                label="My Cards"
-                icon={<BusinessIcon />}
-                component={Link}
-                to="/my-cards"
-                className="footer-icon"
-              />
-            )}
-          </BottomNavigation>
-          <Typography variant="body2" align="center" className="footer-text">
-            &copy; {new Date().getFullYear()} Moshe Green’s Business Cards App
-          </Typography>
-        </Paper>
-      </footer>
-    </Fade>
+    <footer className="footer">
+      <div className="footer-paper">
+        <nav className="footer-nav">
+          <Link to="/about" className="footer-link">
+            <InfoIcon className="footer-icon" />
+            <span>About</span>
+          </Link>
+          {isLoggedIn && (
+            <Link to="/favorites" className="footer-link">
+              <FavoriteIcon className="footer-icon" />
+              <span>Favorites</span>
+            </Link>
+          )}
+          {isBusiness && (
+            <Link to="/my-cards" className="footer-link">
+              <BusinessIcon className="footer-icon" />
+              <span>My Cards</span>
+            </Link>
+          )}
+        </nav>
+
+        <p className="footer-text">
+          &copy; {new Date().getFullYear()} Moshe Green’s Business Cards App
+        </p>
+      </div>
+    </footer>
   );
 };
 
