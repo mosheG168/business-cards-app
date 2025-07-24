@@ -11,9 +11,10 @@ import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import MenuIcon from "@mui/icons-material/Menu";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from "@mui/icons-material/Close";
 import { useThemeMode } from "../context/ThemeContext";
 import { useUser } from "../context/UserContext";
-import SearchIcon from "@mui/icons-material/Search";
 import "../../styles/Header.css";
 
 const Header = () => {
@@ -22,8 +23,9 @@ const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchText, setSearchText] = useState("");
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const navigate = useNavigate();
-  const { pathname } = useLocation(); 
+  const { pathname } = useLocation();
 
   const handleLogoutClick = () => {
     setAnchorEl(null);
@@ -74,45 +76,27 @@ const Header = () => {
   return (
     <>
       <AppBar className="app-header" sx={{ backgroundColor: mode === "dark" ? "#121212" : "#1976d2" }}>
-        <Toolbar sx={{ justifyContent: "space-between", flexWrap: "wrap", gap: 2 }}>
-          <IconButton sx={{ display: { xs: "flex", sm: "none" }, color: "inherit" }} onClick={() => setDrawerOpen(true)}>
+        <Toolbar className="app-toolbar">
+          {/* Mobile Menu */}
+          <IconButton
+            sx={{ display: { xs: "flex", sm: "none" }, color: "inherit" }}
+            onClick={() => setDrawerOpen(true)}
+          >
             <MenuIcon />
           </IconButton>
 
-          <Typography
-            variant="h5"
-            sx={{
-              mr: 2,
-              textDecoration: "none",
-              color: "inherit",
-              fontWeight: "bold",
-              fontSize: "1.6rem",
-              fontFamily: "Roboto, sans-serif",
-              letterSpacing: 1,
-            }}
-          >
+          <Typography variant="h5" className="app-title">
             BCards
           </Typography>
-          <Typography
-            variant="h6"
-            className="app-title"
-          >
-            Business Cards App
-          </Typography>
 
-          <TextField className="search-field"
+          <TextField
+            className="search-field"
             size="small"
             placeholder="Search cards..."
             variant="outlined"
             sx={{
+              display: { xs: "none", sm: "inline-flex" },
               backgroundColor: mode === "dark" ? "#2c2c2c" : "white",
-              color: mode === "dark" ? "#e0e0e0" : "#000",
-              borderRadius: 1,
-              minWidth: 200,
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": { borderColor: mode === "dark" ? "#555" : "#ccc" },
-                "&:hover fieldset": { borderColor: mode === "dark" ? "#90caf9" : "#1976d2" },
-              },
             }}
             value={searchText}
             onChange={handleSearchChange}
@@ -125,6 +109,14 @@ const Header = () => {
             }}
           />
 
+          <IconButton
+            sx={{ display: { xs: "flex", sm: "none" }, color: "inherit" }}
+            onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
+          >
+            {mobileSearchOpen ? <CloseIcon /> : <SearchIcon />}
+          </IconButton>
+
+          {/* Nav + User */}
           <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 2, alignItems: "center" }}>
             <IconButton onClick={toggleColorMode} color="inherit">
               {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
@@ -162,6 +154,26 @@ const Header = () => {
             )}
           </Box>
         </Toolbar>
+
+        {mobileSearchOpen && (
+          <Box className="mobile-search-box">
+            <TextField
+              fullWidth
+              size="small"
+              placeholder="Search cards..."
+              variant="outlined"
+              value={searchText}
+              onChange={handleSearchChange}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon sx={{ color: mode === "dark" ? "#90caf9" : "#555" }} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+        )}
       </AppBar>
 
       <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
