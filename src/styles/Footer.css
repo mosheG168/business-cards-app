@@ -1,5 +1,5 @@
 .footer {
-  position: static !important;
+  position: relative !important; /* force normal flow */
   bottom: auto !important;
   left: auto !important;
   width: 100%;
@@ -10,21 +10,17 @@
 }
 
 .footer-paper {
+  position: relative !important; /* prevent Paper from being absolute */
   width: 100%;
   border-radius: 6px 6px 0 0;
   background: linear-gradient(135deg, #f8fbff, #e3f2fd);
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
   padding: 0.3rem 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .footer-nav {
   min-height: 28px;
   background: transparent;
-  margin-bottom: 2px;
 }
 
 .footer-icon {
