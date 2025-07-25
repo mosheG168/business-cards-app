@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   AppBar, Toolbar, Button, Typography, IconButton, Drawer, Box,
   List, ListItem, ListItemText, Avatar, TextField, Menu,
@@ -19,9 +19,21 @@ import { useThemeMode } from "../context/ThemeContext";
 import { useUser } from "../context/UserContext";
 import "../../styles/Header.css";
 
+// Custom hook to detect mobile
+const useIsMobile = (width = 600) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= width);
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= width);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [width]);
+  return isMobile;
+};
+
 const Header = () => {
   const { mode, toggleColorMode } = useThemeMode();
   const { user, ready, logout } = useUser();
+  const isMobile = useIsMobile(600);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchText, setSearchText] = useState("");
@@ -77,104 +89,121 @@ const Header = () => {
     <>
       <AppBar className="app-header" sx={{ backgroundColor: mode === "dark" ? "#121212" : "#1976d2" }}>
         <Toolbar className="app-toolbar">
-
-          <IconButton className="mobile-menu-btn" onClick={() => setDrawerOpen(true)}>
-            <MenuIcon />
-          </IconButton>
+          {/* Mobile menu button */}
+          {isMobile && (
+            <IconButton onClick={() => setDrawerOpen(true)} color="inherit">
+              <MenuIcon />
+            </IconButton>
+          )}
 
           <Typography variant="h5" className="app-title">BCards</Typography>
 
-          <TextField
-            className="search-field desktop-search"
-            size="small"
-            placeholder="Search cards..."
-            variant="outlined"
-            value={searchText}
-            onChange={handleSearchChange}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon className="search-icon" />
-                </InputAdornment>
-              ),
-            }}
-          />
+          {/* Desktop search field */}
+          {!isMobile && (
+            <TextField
+              className="search-field"
+              size="small"
+              placeholder="Search cards..."
+              variant="outlined"
+              value={searchText}
+              onChange={handleSearchChange}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon className="search-icon" />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          )}
 
-          <IconButton className="mobile-search-btn" onClick={() => setMobileSearchOpen(!mobileSearchOpen)}>
-            {mobileSearchOpen ? <CloseIcon /> : <SearchIcon />}
-          </IconButton>
-
-          <Box className="nav-links">
-            <IconButton onClick={toggleColorMode} color="inherit">
-              {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+          {/* Mobile search toggle */}
+          {isMobile && (
+            <IconButton onClick={() => setMobileSearchOpen(!mobileSearchOpen)} color="inherit">
+              {mobileSearchOpen ? <CloseIcon /> : <SearchIcon />}
             </IconButton>
-            {navLinks.map((link) => (
-              <Button
-                key={link.path}
-                color="inherit"
-                component={Link}
-                to={link.path}
-                className={pathname === link.path ? "active-link" : ""}
-              >
-                {link.label}
-              </Button>
-            ))}
-            {user && (
-              <>
-                <Tooltip title={userTooltip}>
-                  <IconButton onClick={(e) => setAnchorEl(e.currentTarget)}>
-                    <Avatar sx={{ bgcolor: "white", color: "#1976d2" }}>{userIcon}</Avatar>
-                  </IconButton>
-                </Tooltip>
-                <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
-                  <MenuItem onClick={() => navigate("/edit-profile")}>Edit Profile</MenuItem>
-                  <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
-                </Menu>
-              </>
-            )}
-          </Box>
+          )}
+
+          {/* Navigation links (desktop only) */}
+          {!isMobile && (
+            <Box className="nav-links">
+              <IconButton onClick={toggleColorMode} color="inherit">
+                {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+              </IconButton>
+              {navLinks.map((link) => (
+                <Button
+                  key={link.path}
+                  color="inherit"
+                  component={Link}
+                  to={link.path}
+                  className={pathname === link.path ? "active-link" : ""}
+                >
+                  {link.label}
+                </Button>
+              ))}
+              {user && (
+                <>
+                  <Tooltip title={userTooltip}>
+                    <IconButton onClick={(e) => setAnchorEl(e.currentTarget)}>
+                      <Avatar sx={{ bgcolor: "white", color: "#1976d2" }}>{userIcon}</Avatar>
+                    </IconButton>
+                  </Tooltip>
+                  <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
+                    <MenuItem onClick={() => navigate("/edit-profile")}>Edit Profile</MenuItem>
+                    <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
+                  </Menu>
+                </>
+              )}
+            </Box>
+          )}
         </Toolbar>
 
-        <Box className={`mobile-search-box ${mobileSearchOpen ? "open" : ""}`}>
-          <TextField
-            fullWidth
-            size="small"
-            placeholder="Search cards..."
-            variant="outlined"
-            value={searchText}
-            onChange={handleSearchChange}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon className="search-icon" />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Box>
+        {/* Mobile search bar */}
+        {isMobile && mobileSearchOpen && (
+          <Box className="mobile-search-box open">
+            <TextField
+              fullWidth
+              size="small"
+              placeholder="Search cards..."
+              variant="outlined"
+              value={searchText}
+              onChange={handleSearchChange}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon className="search-icon" />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+        )}
       </AppBar>
 
-      <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-        <Box sx={{ width: 250 }} role="presentation" onClick={() => setDrawerOpen(false)}>
-          <List>
-            {navLinks.map((link) => (
-              <ListItem button key={link.path} component={Link} to={link.path}>
-                <ListItemText primary={link.label} />
-              </ListItem>
-            ))}
-            {user && (
-              <>
-                <ListItem button component={Link} to="/edit-profile">
-                  <ListItemText primary="Edit Profile" />
+      {/* Mobile drawer */}
+      {isMobile && (
+        <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+          <Box sx={{ width: 250 }} role="presentation" onClick={() => setDrawerOpen(false)}>
+            <List>
+              {navLinks.map((link) => (
+                <ListItem button key={link.path} component={Link} to={link.path}>
+                  <ListItemText primary={link.label} />
                 </ListItem>
-                <ListItem button onClick={handleLogoutClick}>
-                  <ListItemText primary="Logout" />
-                </ListItem>
-              </>
-            )}
-          </List>
-        </Box>
-      </Drawer>
+              ))}
+              {user && (
+                <>
+                  <ListItem button component={Link} to="/edit-profile">
+                    <ListItemText primary="Edit Profile" />
+                  </ListItem>
+                  <ListItem button onClick={handleLogoutClick}>
+                    <ListItemText primary="Logout" />
+                  </ListItem>
+                </>
+              )}
+            </List>
+          </Box>
+        </Drawer>
+      )}
     </>
   );
 };
