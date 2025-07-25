@@ -3,11 +3,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-top: auto; */
+  margin-top: auto;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.3s ease, transform 0.3s ease;
-  height: 10px;
 }
 
 .footer.show {
