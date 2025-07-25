@@ -1,5 +1,5 @@
 .landing-container {
-  margin-top: 8rem;
+  margin-top: 7rem;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -27,26 +27,18 @@
 
 @media (max-width: 600px) {
   .landing-container {
-    margin-top: 18rem;
+    margin-top: 7rem;
   }
 }
 
 @media (max-width: 400px) {
   .landing-container {
-    margin-top: 18rem;
-  }
-
-  .landing-header {
-    font-size: 1.8rem;
-  }
-
-  .landing-subheader {
-    font-size: 1rem;
+    margin-top: 9rem;
   }
 }
 
 @media (max-width: 768px) and (min-width: 601px) {
   .landing-container {
-    margin-top: 14rem;
+    margin-top: 8rem;
   }
 }

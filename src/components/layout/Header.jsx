@@ -77,15 +77,13 @@ const Header = () => {
     <>
       <AppBar className="app-header" sx={{ backgroundColor: mode === "dark" ? "#121212" : "#1976d2" }}>
         <Toolbar className="app-toolbar">
-          {/* Mobile Menu Icon */}
+
           <IconButton className="mobile-menu-btn" onClick={() => setDrawerOpen(true)}>
             <MenuIcon />
           </IconButton>
 
-          {/* Title */}
           <Typography variant="h5" className="app-title">BCards</Typography>
 
-          {/* Desktop Search */}
           <TextField
             className="search-field desktop-search"
             size="small"
@@ -102,12 +100,10 @@ const Header = () => {
             }}
           />
 
-          {/* Mobile Search Toggle */}
           <IconButton className="mobile-search-btn" onClick={() => setMobileSearchOpen(!mobileSearchOpen)}>
             {mobileSearchOpen ? <CloseIcon /> : <SearchIcon />}
           </IconButton>
 
-          {/* Navigation + User */}
           <Box className="nav-links">
             <IconButton onClick={toggleColorMode} color="inherit">
               {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
@@ -139,7 +135,6 @@ const Header = () => {
           </Box>
         </Toolbar>
 
-        {/* Mobile Search */}
         <Box className={`mobile-search-box ${mobileSearchOpen ? "open" : ""}`}>
           <TextField
             fullWidth
@@ -159,7 +154,6 @@ const Header = () => {
         </Box>
       </AppBar>
 
-      {/* Mobile Drawer */}
       <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <Box sx={{ width: 250 }} role="presentation" onClick={() => setDrawerOpen(false)}>
           <List>

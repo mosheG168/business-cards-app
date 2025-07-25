@@ -56,7 +56,7 @@
 .mobile-search-box {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.3s ease, padding 0.3s ease;
   padding: 0 1rem;
 }
 
@@ -77,9 +77,10 @@
 
 /* Small screens */
 @media (max-width: 600px) {
-  .desktop-search {
+  .search-field.desktop-search {
     display: none !important;
   }
+
   .mobile-menu-btn,
   .mobile-search-btn {
     display: inline-flex;
