@@ -13,28 +13,29 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-paper">
-        <nav className="footer-nav">
-          <Link to="/about" className="footer-link">
-            <InfoIcon className="footer-icon" />
-            <span>About</span>
-          </Link>
-          {isLoggedIn && (
-            <Link to="/favorites" className="footer-link">
-              <FavoriteIcon className="footer-icon" />
-              <span>Favorites</span>
+        <div className="footer-content">
+          <nav className="footer-nav">
+            <Link to="/about" className="footer-link">
+              <InfoIcon className="footer-icon" />
+              <span>About</span>
             </Link>
-          )}
-          {isBusiness && (
-            <Link to="/my-cards" className="footer-link">
-              <BusinessIcon className="footer-icon" />
-              <span>My Cards</span>
-            </Link>
-          )}
-        </nav>
-
-        <p className="footer-text">
-          &copy; {new Date().getFullYear()} Moshe Green’s Business Cards App
-        </p>
+            {isLoggedIn && (
+              <Link to="/favorites" className="footer-link">
+                <FavoriteIcon className="footer-icon" />
+                <span>Favorites</span>
+              </Link>
+            )}
+            {isBusiness && (
+              <Link to="/my-cards" className="footer-link">
+                <BusinessIcon className="footer-icon" />
+                <span>My Cards</span>
+              </Link>
+            )}
+          </nav>
+          <p className="footer-text">
+            &copy; {new Date().getFullYear()} Moshe Green’s Business Cards App
+          </p>
+        </div>
       </div>
     </footer>
   );
