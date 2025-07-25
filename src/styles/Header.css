@@ -9,50 +9,87 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: nowrap;
   padding: 0 1rem;
   height: 64px;
   box-sizing: border-box;
 }
 
+.loading-toolbar {
+  justify-content: center;
+  height: 64px;
+}
+
 .app-title {
   font-weight: bold;
   font-size: 1.6rem;
-  flex: 0 0 auto;
-  text-decoration: none;
   color: inherit;
-  white-space: nowrap;
 }
 
 .search-field {
   min-width: 200px;
 }
 
-.mobile-search-box {
-  padding: 0.5rem 1rem;
-  background-color: inherit;
+.desktop-search {
+  display: inline-flex;
 }
 
+.search-icon {
+  color: #555;
+}
+
+.mobile-menu-btn,
+.mobile-search-btn {
+  display: none;
+  color: inherit;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.active-link {
+  border-bottom: 2px solid white;
+}
+
+.mobile-search-box {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding: 0 1rem;
+}
+
+.mobile-search-box.open {
+  max-height: 80px;
+  padding: 0.5rem 1rem;
+}
+
+/* Dark Mode */
 [data-theme="dark"] .MuiOutlinedInput-root {
   background-color: #2c2c2c;
   color: #e0e0e0;
 }
 
-[data-theme="dark"] .MuiSvgIcon-root {
+[data-theme="dark"] .search-icon {
   color: #90caf9;
 }
 
+/* Small screens */
 @media (max-width: 600px) {
-  .app-toolbar {
-    height: 56px;
-    padding: 0 0.5rem;
+  .desktop-search {
+    display: none !important;
   }
-
+  .mobile-menu-btn,
+  .mobile-search-btn {
+    display: inline-flex;
+  }
   .app-title {
     font-size: 1.2rem;
   }
 }
 
+/* Very small devices */
 @media (max-width: 400px) {
   .app-title {
     font-size: 1rem;
