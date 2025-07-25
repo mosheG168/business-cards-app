@@ -20,12 +20,13 @@ import { useThemeMode } from "../context/ThemeContext";
 import { useUser } from "../context/UserContext";
 import "../../styles/Header.css";
 
+// Custom hook for mobile detection
 const useIsMobile = (width = 600) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= width);
   useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth <= width);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    const handleResize = () => setIsMobile(window.innerWidth <= width);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [width]);
   return isMobile;
 };
@@ -33,7 +34,7 @@ const useIsMobile = (width = 600) => {
 const Header = () => {
   const { mode, toggleColorMode } = useThemeMode();
   const { user, ready, logout } = useUser();
-  const isMobile = useIsMobile(600);
+  const isMobile = useIsMobile();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchText, setSearchText] = useState("");
@@ -50,13 +51,16 @@ const Header = () => {
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchText(value);
-    if (value.trim() === "") navigate("/", { replace: true });
-    else navigate(`/cards?search=${encodeURIComponent(value)}`, { replace: pathname === "/cards" });
+    if (value.trim() === "") {
+      navigate("/");
+    } else {
+      navigate(`/cards?search=${encodeURIComponent(value)}`, { replace: pathname === "/cards" });
+    }
   };
 
   const clearSearch = () => {
     setSearchText("");
-    navigate("/", { replace: true });
+    navigate("/");
   };
 
   if (!ready) {
@@ -108,7 +112,7 @@ const Header = () => {
         ),
         endAdornment: searchText && (
           <InputAdornment position="end">
-            <IconButton size="small" onClick={clearSearch}>
+            <IconButton size="small" onClick={clearSearch} edge="end" tabIndex={-1}>
               <ClearIcon />
             </IconButton>
           </InputAdornment>
