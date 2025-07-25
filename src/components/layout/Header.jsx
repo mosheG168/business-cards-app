@@ -13,13 +13,13 @@ import {
   Brightness4 as Brightness4Icon,
   Brightness7 as Brightness7Icon,
   Search as SearchIcon,
-  Close as CloseIcon
+  Close as CloseIcon,
+  Clear as ClearIcon
 } from "@mui/icons-material";
 import { useThemeMode } from "../context/ThemeContext";
 import { useUser } from "../context/UserContext";
 import "../../styles/Header.css";
 
-// Custom hook to detect mobile
 const useIsMobile = (width = 600) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= width);
   useEffect(() => {
@@ -50,7 +50,13 @@ const Header = () => {
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchText(value);
-    navigate(`/cards?search=${encodeURIComponent(value)}`, { replace: pathname === "/cards" });
+    if (value.trim() === "") navigate("/", { replace: true });
+    else navigate(`/cards?search=${encodeURIComponent(value)}`, { replace: pathname === "/cards" });
+  };
+
+  const clearSearch = () => {
+    setSearchText("");
+    navigate("/", { replace: true });
   };
 
   if (!ready) {
@@ -85,11 +91,36 @@ const Header = () => {
   const userTooltip = user?.isAdmin ? "Admin User" :
                       user?.isBusiness ? "Business User" : "Regular User";
 
+  const renderSearchField = (fullWidth = false) => (
+    <TextField
+      className="search-field"
+      size="small"
+      placeholder="Search cards..."
+      variant="outlined"
+      fullWidth={fullWidth}
+      value={searchText}
+      onChange={handleSearchChange}
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <SearchIcon className="search-icon" />
+          </InputAdornment>
+        ),
+        endAdornment: searchText && (
+          <InputAdornment position="end">
+            <IconButton size="small" onClick={clearSearch}>
+              <ClearIcon />
+            </IconButton>
+          </InputAdornment>
+        ),
+      }}
+    />
+  );
+
   return (
     <>
       <AppBar className="app-header" sx={{ backgroundColor: mode === "dark" ? "#121212" : "#1976d2" }}>
         <Toolbar className="app-toolbar">
-          {/* Mobile menu button */}
           {isMobile && (
             <IconButton onClick={() => setDrawerOpen(true)} color="inherit">
               <MenuIcon />
@@ -98,33 +129,14 @@ const Header = () => {
 
           <Typography variant="h5" className="app-title">BCards</Typography>
 
-          {/* Desktop search field */}
-          {!isMobile && (
-            <TextField
-              className="search-field"
-              size="small"
-              placeholder="Search cards..."
-              variant="outlined"
-              value={searchText}
-              onChange={handleSearchChange}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon className="search-icon" />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          )}
+          {!isMobile && renderSearchField()}
 
-          {/* Mobile search toggle */}
           {isMobile && (
             <IconButton onClick={() => setMobileSearchOpen(!mobileSearchOpen)} color="inherit">
               {mobileSearchOpen ? <CloseIcon /> : <SearchIcon />}
             </IconButton>
           )}
 
-          {/* Navigation links (desktop only) */}
           {!isMobile && (
             <Box className="nav-links">
               <IconButton onClick={toggleColorMode} color="inherit">
@@ -158,29 +170,11 @@ const Header = () => {
           )}
         </Toolbar>
 
-        {/* Mobile search bar */}
         {isMobile && mobileSearchOpen && (
-          <Box className="mobile-search-box open">
-            <TextField
-              fullWidth
-              size="small"
-              placeholder="Search cards..."
-              variant="outlined"
-              value={searchText}
-              onChange={handleSearchChange}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon className="search-icon" />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Box>
+          <Box className="mobile-search-box open">{renderSearchField(true)}</Box>
         )}
       </AppBar>
 
-      {/* Mobile drawer */}
       {isMobile && (
         <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
           <Box sx={{ width: 250 }} role="presentation" onClick={() => setDrawerOpen(false)}>
