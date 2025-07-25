@@ -4,6 +4,14 @@
   justify-content: center;
   align-items: center;
   margin-top: auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.footer.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .footer-paper {

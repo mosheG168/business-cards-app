@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useUser } from "../context/UserContext";
 import { Link } from "react-router-dom";
 import "../../styles/Footer.css";
@@ -7,8 +8,23 @@ import BusinessIcon from "@mui/icons-material/Business";
 
 const Footer = () => {
   const { user } = useUser();
+  const [showFooter, setShowFooter] = useState(false);
+
   const isBusiness = user?.isBusiness;
   const isLoggedIn = !!user;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const bottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 5;
+      setShowFooter(bottom);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  if (!showFooter) return null;
 
   return (
     <footer className="footer">
