@@ -15,12 +15,12 @@ const Footer = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const bottom =
+      const bottomReached =
         window.innerHeight + window.scrollY >= document.body.offsetHeight - 5;
-      setShowFooter(bottom);
+      setShowFooter(bottomReached);
     };
-
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Run once on mount
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 

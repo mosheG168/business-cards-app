@@ -19,4 +19,6 @@ body {
   flex: 1; /* This ensures footer is pushed down */
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - 64px - 50px);
+  padding-bottom: 1rem;
 }
