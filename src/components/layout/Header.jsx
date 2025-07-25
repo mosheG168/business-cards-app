@@ -5,22 +5,12 @@ import {
   MenuItem, CircularProgress, InputAdornment, Tooltip
 } from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import {
-  PersonOutline as PersonOutlineIcon,
-  BusinessCenter as BusinessCenterIcon,
-  AdminPanelSettings as AdminPanelSettingsIcon,
-  Menu as MenuIcon,
-  Brightness4 as Brightness4Icon,
-  Brightness7 as Brightness7Icon,
-  Search as SearchIcon,
-  Close as CloseIcon,
-  Clear as ClearIcon
+import {PersonOutline as PersonOutlineIcon,BusinessCenter as BusinessCenterIcon,AdminPanelSettings as AdminPanelSettingsIcon,Menu as MenuIcon,Brightness4 as Brightness4Icon,Brightness7 as Brightness7Icon,Search as SearchIcon,Close as CloseIcon,Clear as ClearIcon
 } from "@mui/icons-material";
 import { useThemeMode } from "../context/ThemeContext";
 import { useUser } from "../context/UserContext";
 import "../../styles/Header.css";
 
-// Custom hook for mobile detection
 const useIsMobile = (width = 600) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= width);
   useEffect(() => {
