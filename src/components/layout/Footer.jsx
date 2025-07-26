@@ -1,59 +1,40 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useUser } from "../context/UserContext";
-import { Link } from "react-router-dom";
-import "../../styles/Footer.css";
+import { useNavigate } from "react-router-dom";
+import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import BusinessIcon from "@mui/icons-material/Business";
+import "../../styles/Footer.css";
 
 const Footer = () => {
   const { user } = useUser();
-  const [showFooter, setShowFooter] = useState(false);
+  const [value, setValue] = useState(0);
+  const navigate = useNavigate();
 
   const isBusiness = user?.isBusiness;
   const isLoggedIn = !!user;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const bottomReached =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight - 5;
-      setShowFooter(bottomReached);
-    };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Run once on mount
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  if (!showFooter) return null;
-
   return (
-    <footer className="footer">
-      <div className="footer-paper">
-        <div className="footer-content">
-          <nav className="footer-nav">
-            <Link to="/about" className="footer-link">
-              <InfoIcon className="footer-icon" />
-              <span>About</span>
-            </Link>
-            {isLoggedIn && (
-              <Link to="/favorites" className="footer-link">
-                <FavoriteIcon className="footer-icon" />
-                <span>Favorites</span>
-              </Link>
-            )}
-            {isBusiness && (
-              <Link to="/my-cards" className="footer-link">
-                <BusinessIcon className="footer-icon" />
-                <span>My Cards</span>
-              </Link>
-            )}
-          </nav>
-          <p className="footer-text">
-            &copy; {new Date().getFullYear()} Moshe Green’s Business Cards App
-          </p>
-        </div>
-      </div>
-    </footer>
+    <Paper className="footer-paper" elevation={3}>
+      <BottomNavigation
+        className="footer-nav"
+        showLabels
+        value={value}
+        onChange={(e, newValue) => {
+          setValue(newValue);
+          navigate(newValue);
+        }}
+      >
+        <BottomNavigationAction label="About" icon={<InfoIcon />} value="/about" />
+        {isLoggedIn && (
+          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} value="/favorites" />
+        )}
+        {isBusiness && (
+          <BottomNavigationAction label="My Cards" icon={<BusinessIcon />} value="/my-cards" />
+        )}
+      </BottomNavigation>
+    </Paper>
   );
 };
 
