@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./tokenService";
 
 const api = axios.create({
-  baseURL: "https://monkfish-app-z9uza.ondigitalocean.app/bcard2",
+  baseURL: https://bcard-ojqa.onrender.com/",
 });
 
 api.interceptors.request.use((config) => {
