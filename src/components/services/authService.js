@@ -8,6 +8,6 @@ export const registerUser = async (userData) => {
 
 export const loginUser = async (credentials, remember = false) => {
   const { data: token } = await api.post("/users/login", credentials);
-  saveToken(token, remember); // Save token immediately
+  saveToken(token, remember);
   return token;
 };
