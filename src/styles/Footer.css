@@ -1,0 +1,47 @@
+.footer-paper {
+  position: static;
+  width: 100%;
+  margin-top: auto; /* push to bottom when page is short */
+  flex-shrink: 0; /* never collapse */
+  background: linear-gradient(135deg, #f8fbff, #e3f2fd);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+}
+/* This was changed */
+
+.footer-nav {
+  background: transparent;
+  height: 48px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.MuiBottomNavigationAction-root {
+  min-width: auto;
+  padding: 4px 6px;
+  font-size: 0.7rem;
+  color: #1976d2;
+  transition: color 0.2s ease;
+}
+
+.MuiBottomNavigationAction-root.Mui-selected {
+  color: #0d47a1;
+}
+
+[data-theme="dark"] .footer-paper {
+  background: linear-gradient(135deg, #1c1c1c, #2c387e);
+}
+
+[data-theme="dark"] .MuiBottomNavigationAction-root {
+  color: #bbdefb;
+}
+
+[data-theme="dark"] .MuiBottomNavigationAction-root.Mui-selected {
+  color: #90caf9;
+}
+
+@media (max-width: 400px) {
+  .MuiBottomNavigationAction-root {
+    font-size: 0.6rem;
+  }
+}

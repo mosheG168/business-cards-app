@@ -1,0 +1,28 @@
+html,
+body,
+#root {
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+/* Make ONLY #root the flex column container */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh; /* mobile-safe vh */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.main-content {
+  flex: 1 0 auto; /* grow and push footer down */
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem; /* keep a bit of room above footer */
+  min-height: auto; /*
+  min-height: auto; /* no calc needed when using flex */
+}
+/* All this was changed */

@@ -1,0 +1,43 @@
+.create-card-container {
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+}
+
+.create-card-header {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text-color, #1976d2);
+}
+
+.create-card-card {
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.create-card-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem 2rem;
+}
+
+.create-card-field[name="description"] {
+  grid-column: span 2;
+}
+
+.create-card-button {
+  grid-column: span 2;
+  margin-top: 1.8rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+}
+
+[data-theme="dark"] .create-card-card {
+  background-color: #1e1e1e;
+}
+
+[data-theme="dark"] .create-card-header {
+  color: #90caf9;
+}

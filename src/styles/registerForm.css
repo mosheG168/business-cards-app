@@ -1,0 +1,62 @@
+.register-container {
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.register-header {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-color, #1976d2);
+  letter-spacing: 0.5px;
+}
+
+.register-card {
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  width: 100%;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  background: var(--paper-bg, #fff);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.register-card .MuiTextField-root {
+  background: #fff;
+}
+
+.register-card .MuiFormHelperText-root {
+  margin-left: 2.5rem;
+  color: #d32f2f;
+}
+
+[data-theme="dark"] .register-card {
+  --paper-bg: #1e1e1e;
+  --text-color: #e0e0e0;
+  background: var(--paper-bg);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .register-divider {
+  background: linear-gradient(90deg, #90caf9, #64b5f6);
+}
+
+[data-theme="dark"] .register-card .MuiInputBase-input,
+[data-theme="dark"] .register-card .MuiFormLabel-root,
+[data-theme="dark"] .register-card .MuiSvgIcon-root {
+  color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .register-card .MuiOutlinedInput-notchedOutline {
+  border-color: #666;
+}
+
+[data-theme="dark"] .register-card .MuiTextField-root {
+  background: #2a2a2a;
+}
+
+[data-theme="dark"] .register-card .MuiFormHelperText-root {
+  color: #ffb3b3;
+}
